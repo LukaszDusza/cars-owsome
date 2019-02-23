@@ -1,0 +1,21 @@
+<div class="col-sm-12" xmlns:th="http://www.w3.org/1999/xhtml" th:fragment="table">
+
+    <table class="table table-bordered">
+        <tr>
+            <th>id</th>
+            <th>brand</th>
+            <th>model</th>
+            <th>power</th>
+        </tr>
+
+        <tr th:each="car : ${cars}">
+            <td th:text="${car.getId()}"></td>
+            <td th:text="${car.getBrand()}"></td>
+            <td th:text="${car.getModel()}"></td>
+            <td th:text="${car.getPower()}"></td>
+            <td><button class="btn btn-sm btn-success">update</button></td>
+            <td><button class="btn btn-sm btn-warning">delete</button></td>
+        </tr>
+
+    </table>
+</div>

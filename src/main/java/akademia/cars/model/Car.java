@@ -25,6 +25,9 @@ public class Car {
     @Column(name = "power")
     private String power;
 
+    @Column(name = "plate", unique = true, nullable = false)
+    private String plate;
+
 
 
 }
