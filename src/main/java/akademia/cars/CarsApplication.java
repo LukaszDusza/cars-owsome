@@ -15,9 +15,9 @@ public class CarsApplication {
 
     }
 
-    @Bean
-    public Car getCarInstance() {
-        return new Car();
-    }
+//    @Bean
+//    public Car getCarInstance() {
+//        return new Car();
+//    }
 
 }

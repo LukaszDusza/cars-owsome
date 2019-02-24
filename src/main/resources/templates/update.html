@@ -7,13 +7,12 @@
 <body>
 
 
+<form action="/upd/" th:object="${car}" method="post" >
 
-
-<form th:action="@{/update}" th:object="${car}" method="post" action="">
-    <input type="text" th:value="${car.getBrand()}" name="brand">
-    <input type="hidden" th:value="${car.getModel()}" name="model">
-    <input type="hidden" th:value="${car.getPower()}" name="power">
-    <input type="hidden" th:value="${car.getPlate()}" name="plate">
+    <input type="text" name="brand" th:value="${car.getBrand()}">
+    <input type="text" name="model" th:value="${car.getModel()}">
+    <input type="text" name="power" th:value="${car.getPower()}">
+    <input type="text" name="plate" th:value="${car.getPlate()}">
 
     <button class="btn btn-sm btn-success" type="submit">update</button>
 </form>

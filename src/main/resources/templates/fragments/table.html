@@ -19,10 +19,16 @@
 
             <td>
 
-                <a href="/redirect/update>
-                    <button class="btn btn-sm btn-success">update</button>
-                </a>
+                <!--przekazujemy obiekt w ukrytym formularzu-->
+                <form action="/update" th:object="${car}" method="post">
 
+                    <input type="hidden" th:value="${car.getBrand()}" name="brand">
+                    <input type="hidden" th:value="${car.getModel()}" name="model">
+                    <input type="hidden" th:value="${car.getPower()}" name="power">
+                    <input type="hidden" th:value="${car.getPlate()}" name="plate">
+
+                    <button class="btn btn-sm btn-success" type="submit">update</button>
+                </form>
             </td>
 
 

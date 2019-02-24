@@ -45,23 +45,17 @@ public class HomeController {
     }
 
     @PostMapping("update")
-    public String updateCar(
-            @Valid @ModelAttribute CarDTO car,
-            @RequestParam(value = "plate") String plate
-    ) throws AlreadyExist, NotFoundException {
-        carService.updateCarByPlate(plate, car);
-
-        //todo add methods
-
-        return "redirect:/home";
-    }
-
-    @GetMapping("redirect/update")
-    public String getRedirectToUpdate(
-            @RequestParam(value = "plate", required = false) String plate, CarDTO car) throws NotFoundException {
-        carService.updateCarByPlate(plate, car);
+    public String updateCar(@Valid @ModelAttribute CarDTO car, Model model) {
+        model.addAttribute("car", car);
         return "update";
     }
 
+    @PostMapping("upd")
+    public String updateCarByPlate(@Valid @ModelAttribute CarDTO car, @RequestParam String plate) throws NotFoundException {
+        System.out.println(plate);
+        carService.updateCarByPlate(plate, car);
+
+        return "redirect:/home";
+    }
 
 }

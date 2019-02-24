@@ -1,10 +1,8 @@
 package akademia.cars.model.dtos;
 
 import lombok.*;
-import org.springframework.web.bind.annotation.GetMapping;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
