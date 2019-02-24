@@ -58,7 +58,8 @@ public class HomeController {
 
     @GetMapping("redirect/update")
     public String getRedirectToUpdate(
-            @RequestParam(value = "plate", required = false) String plate) {
+            @RequestParam(value = "plate", required = false) String plate, CarDTO car) throws NotFoundException {
+        carService.updateCarByPlate(plate, car);
         return "update";
     }
 

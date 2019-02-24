@@ -7,8 +7,10 @@
 <body>
 
 
+
+
 <form th:action="@{/update}" th:object="${car}" method="post" action="">
-    <input type="hidden" th:value="${car.getBrand()}" name="brand">
+    <input type="text" th:value="${car.getBrand()}" name="brand">
     <input type="hidden" th:value="${car.getModel()}" name="model">
     <input type="hidden" th:value="${car.getPower()}" name="power">
     <input type="hidden" th:value="${car.getPlate()}" name="plate">
