@@ -17,5 +17,4 @@ public class CarDTO {
     private String plate;
     private String message;
 
-
 }

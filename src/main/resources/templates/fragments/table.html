@@ -6,15 +6,33 @@
             <th>brand</th>
             <th>model</th>
             <th>power</th>
+            <th>plate</th>
         </tr>
+
 
         <tr th:each="car : ${cars}">
             <td th:text="${car.getId()}"></td>
             <td th:text="${car.getBrand()}"></td>
             <td th:text="${car.getModel()}"></td>
             <td th:text="${car.getPower()}"></td>
-            <td><button class="btn btn-sm btn-success">update</button></td>
-            <td><button class="btn btn-sm btn-warning">delete</button></td>
+            <td th:text="${car.getPlate()}"></td>
+
+            <td>
+
+                <a href="/redirect/update">
+                    <button class="btn btn-sm btn-success">update</button>
+                </a>
+
+            </td>
+
+
+            <td>
+                <form action="/del" method="get">
+                    <input type="hidden" th:value="${car.getPlate()}" name="plate">
+                    <button class="btn btn-sm btn-warning" type="submit">delete</button>
+                </form>
+            </td>
+
         </tr>
 
     </table>

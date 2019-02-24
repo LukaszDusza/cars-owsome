@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Update my Car</title>
+</head>
+<body>
+
+
+<form th:action="@{/update}" th:object="${car}" method="post" action="">
+    <input type="hidden" th:value="${car.getBrand()}" name="brand">
+    <input type="hidden" th:value="${car.getModel()}" name="model">
+    <input type="hidden" th:value="${car.getPower()}" name="power">
+    <input type="hidden" th:value="${car.getPlate()}" name="plate">
+
+    <button class="btn btn-sm btn-success" type="submit">update</button>
+</form>
+
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+<div class="col-sm-12" xmlns:th="http://www.w3.org/1999/xhtml" th:fragment="add">
+
+
+    <form th:action="@{/add}" th:object="${car}" method="post" action="/add">
+
+        <input type="text" name="brand"/>
+        <input type="text" name="model"/>
+        <input type="text" name="power"/>
+        <input type="text" name="plate"/>
+
+        <button type="submit" class="btn btn-sm btn-success">create</button>
+    </form>
+
+</div>
