@@ -52,7 +52,7 @@ public class HomeController {
 
     @PostMapping("upd")
     public String updateCarByPlate(@Valid @ModelAttribute CarDTO car, @RequestParam String plate) throws NotFoundException {
-        System.out.println(plate);
+     //   System.out.println(plate);
         carService.updateCarByPlate(plate, car);
 
         return "redirect:/home";

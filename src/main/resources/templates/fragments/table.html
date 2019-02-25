@@ -21,23 +21,32 @@
 
                 <!--przekazujemy obiekt w ukrytym formularzu-->
                 <form action="/update" th:object="${car}" method="post">
+                    <div class="form-gruop">
+                        <input type="hidden" th:value="${car.getBrand()}" name="brand">
+                        <input type="hidden" th:value="${car.getModel()}" name="model">
+                        <input type="hidden" th:value="${car.getPower()}" name="power">
+                        <input type="hidden" th:value="${car.getPlate()}" name="plate">
 
-                    <input type="hidden" th:value="${car.getBrand()}" name="brand">
-                    <input type="hidden" th:value="${car.getModel()}" name="model">
-                    <input type="hidden" th:value="${car.getPower()}" name="power">
-                    <input type="hidden" th:value="${car.getPlate()}" name="plate">
-
-                    <button class="btn btn-sm btn-success" type="submit">update</button>
+                        <button class="btn btn-sm btn-success" type="submit"
+                                style="margin: 0.2em; width: 60px; float: left">update
+                        </button>
+                    </div>
                 </form>
-            </td>
 
-
-            <td>
                 <form action="/del" method="get">
-                    <input type="hidden" th:value="${car.getPlate()}" name="plate">
-                    <button class="btn btn-sm btn-warning" type="submit">delete</button>
+                    <div class="form-gruop">
+                        <input type="hidden" th:value="${car.getPlate()}" name="plate">
+                        <button class="btn btn-sm btn-warning" type="submit" style="margin: 0.2em; width: 60px;">
+                            delete
+                        </button>
+                    </div>
                 </form>
+
             </td>
+
+
+            <!--<td>-->
+            <!--</td>-->
 
         </tr>
 

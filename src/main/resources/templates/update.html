@@ -1,21 +1,43 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <title>Update my Car</title>
+<head th:replace="fragments/library :: init">
+
+
 </head>
 <body>
 
+<div class="container">
+    <div class="row">
+        <div class="col-6-md">
+            <form action="/upd/" th:object="${car}" method="post">
 
-<form action="/upd/" th:object="${car}" method="post" >
+                <div class="form-group">
+                    <small class="form-text text-muted">Brand</small>
+                    <input type="text" name="brand" th:value="${car.getBrand()}" placeholder="brand">
+                </div>
 
-    <input type="text" name="brand" th:value="${car.getBrand()}">
-    <input type="text" name="model" th:value="${car.getModel()}">
-    <input type="text" name="power" th:value="${car.getPower()}">
-    <input type="text" name="plate" th:value="${car.getPlate()}">
+                <div class="form-group">
+                    <small class="form-text text-muted">Model</small>
+                    <input type="text" name="model" th:value="${car.getModel()}" placeholder="model">
+                </div>
 
-    <button class="btn btn-sm btn-success" type="submit">update</button>
-</form>
+                <div class="form-group">
+                    <small class="form-text text-muted">Power</small>
+                    <input type="text" name="power" th:value="${car.getPower()}" placeholder="power">
+                </div>
+
+                <div class="form-group">
+                    <small class="form-text text-muted">Plate</small>
+                    <input type="text" name="plate" th:value="${car.getPlate()}" placeholder="power">
+                </div>
+
+                <button class="btn btn-sm btn-success" type="submit">update</button>
+               <a href="/home"> <button class="btn btn-sm btn-default" type="button">back to home</button></a>
+            </form>
+
+        </div>
+    </div>
+</div>
 
 
 </body>
