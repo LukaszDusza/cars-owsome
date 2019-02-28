@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/library :: init">
 
 
@@ -9,7 +9,9 @@
 <div class="container">
     <div class="row">
         <div class="col-6-md">
-            <form action="/upd/" th:object="${car}" method="post">
+            <form action="/upd" th:object="${car}" method="post" >
+
+                <input type="hidden" th:value="${car.getPlate()}" name="param"/>
 
                 <div class="form-group">
                     <small class="form-text text-muted">Brand</small>
@@ -28,11 +30,11 @@
 
                 <div class="form-group">
                     <small class="form-text text-muted">Plate</small>
-                    <input type="text" name="plate" th:value="${car.getPlate()}" placeholder="power">
+                    <input type="text" name="plate" th:value="${car.getPlate()}" placeholder="plate" >
                 </div>
 
                 <button class="btn btn-sm btn-success" type="submit">update</button>
-               <a href="/home"> <button class="btn btn-sm btn-default" type="button">back to home</button></a>
+               <a href="/"> <button class="btn btn-sm btn-default" type="button">back to home</button></a>
             </form>
 
         </div>

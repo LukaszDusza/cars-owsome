@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 @Service
@@ -87,6 +88,12 @@ public class CarService {
 //            );
 //
 //            carRepository.save(carDao);
+
+            //if car plate is blank.
+            if(carDto.getPlate().equals("")) {
+                Random random = new Random();
+                carDto.setPlate("rand" + random.nextInt(500));
+            }
 
             carRepository.save(
                     Car.builder()
