@@ -8,7 +8,6 @@ import lombok.*;
 @Builder
 public class CarDTO {
 
-
     private String brand;
     private String model;
     private String power;

@@ -1,13 +1,12 @@
 package akademia.cars.service;
 
-import akademia.cars.exceptions.AlreadyExist;
+import akademia.cars.exceptions.AlreadyExistException;
 import akademia.cars.exceptions.NotFoundException;
 import akademia.cars.mappers.CarMapper;
 import akademia.cars.model.Car;
 //import akademia.cars.repository.CarRepository;
 import akademia.cars.model.dtos.CarDTO;
 import akademia.cars.repository.CarRepository;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -48,22 +47,19 @@ public class CarService {
     public List<CarDTO> getCarsDto() {
 
         List<CarDTO> carDTOS = new ArrayList<>();
-        //  List<Car> cars = carRepository.findAll();
 
-        for (Car car : carRepository.findAll()) {
-            carDTOS.add(carMapper.map(car));
-        }
-
-//        List<CarDTO> cardtos =carRepository.findAll()
-//                .stream()
-//                .map(c -> carDTOS.add(carMapper.map(c)
-
+        carRepository
+                .findAll()
+                .stream()
+                .map(c -> carDTOS.add(carMapper.map(c)))
+                .collect(Collectors.toList());
 
         return carDTOS;
     }
 
     public boolean deleteCar(String plate) throws NotFoundException {
         Optional<Car> car = carRepository.findCarByPlate(plate);
+
         if (car.isPresent()) {
             carRepository.deleteById(car.get().getId());
             return true;
@@ -72,12 +68,12 @@ public class CarService {
         }
     }
 
-    public boolean addCar(CarDTO carDto) throws AlreadyExist {
+    public boolean addCar(CarDTO carDto) throws AlreadyExistException {
 
         Optional<Car> car = carRepository.findCarByPlate(carDto.getPlate());
 
         if (car.isPresent()) {
-            throw new AlreadyExist("Car exist!");
+            throw new AlreadyExistException();
         } else {
 
 //            Car carDao = new Car(
@@ -109,6 +105,20 @@ public class CarService {
 
     }
 
+    public Car addNewCar(CarDTO carDto) throws AlreadyExistException {
+        if(!carRepository.findCarByPlate(carDto.getPlate()).isPresent()) {
+           return carRepository.save(
+                    Car.builder()
+                    .brand(carDto.getBrand())
+                    .model(carDto.getModel())
+                    .power(carDto.getPower())
+                    .plate(carDto.getPlate())
+                    .build()
+            );
+        }
+         throw new AlreadyExistException();
+    }
+
     public CarDTO updateCarByPlate(String plate, CarDTO carDTO) throws NotFoundException {
 
         Optional<Car> car = carRepository.findCarByPlate(plate);
@@ -124,7 +134,10 @@ public class CarService {
 
             return carMapper.map(car.get());
         }
-        throw new NotFoundException("Car not exist!");
+        throw new NotFoundException();
     }
+
+
+
 
 }

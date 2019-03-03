@@ -1,17 +1,15 @@
 package akademia.cars.controller;
 
-import akademia.cars.exceptions.AlreadyExist;
+import akademia.cars.exceptions.AlreadyExistException;
 import akademia.cars.exceptions.NotFoundException;
 import akademia.cars.model.Car;
 import akademia.cars.model.dtos.CarDTO;
 import akademia.cars.service.CarService;
-import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @CrossOrigin
@@ -43,7 +41,7 @@ public class CarController {
     }
 
     @PostMapping("/dto/cars")
-    public ResponseEntity<?> addCar(@RequestBody CarDTO carDTO) throws AlreadyExist {
+    public ResponseEntity<?> addCar(@RequestBody CarDTO carDTO) throws AlreadyExistException {
         if (!carService.addCar(carDTO)) {
             return new ResponseEntity<>(HttpStatus.CONFLICT); //409
         } else {
@@ -60,7 +58,7 @@ public class CarController {
             @RequestParam(value = "plate", required = false) String plate,
             @RequestParam(value = "message", required = false) String message
 
-    ) throws AlreadyExist {
+    ) throws AlreadyExistException {
 
         if (message == null) {
             message = "no message";
@@ -88,10 +86,15 @@ public class CarController {
     }
 
     @PutMapping("/dto/cars/{plate}")
-    public CarDTO updateCarByPlate(
-            @PathVariable(value = "plate") String plate,
-            @RequestBody CarDTO carDto) throws NotFoundException {
+    @ResponseStatus(value = HttpStatus.ACCEPTED)
+    public CarDTO updateCarByPlate(@PathVariable(value = "plate") String plate, @RequestBody CarDTO carDto) throws NotFoundException {
         return carService.updateCarByPlate(plate, carDto);
+    }
+
+    @PostMapping("/dto/cars/new")
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public Car addNewCar(@RequestBody CarDTO car) {
+        return carService.addNewCar(car);
     }
 
 

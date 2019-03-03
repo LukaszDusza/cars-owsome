@@ -1,10 +1,5 @@
 package akademia.cars.exceptions;
 
-public class NotFoundException extends Exception {
-    String message = "Car not exist!";
+public class NotFoundException extends RuntimeException {
 
-    public NotFoundException(String message) {
-        super(message);
-
-    }
 }

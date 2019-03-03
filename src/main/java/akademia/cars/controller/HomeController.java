@@ -1,15 +1,12 @@
 package akademia.cars.controller;
 
-import akademia.cars.exceptions.AlreadyExist;
+import akademia.cars.exceptions.AlreadyExistException;
 import akademia.cars.exceptions.NotFoundException;
-import akademia.cars.model.Car;
 import akademia.cars.model.dtos.CarDTO;
 import akademia.cars.service.CarService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 
 @Controller
 
@@ -30,7 +27,7 @@ public class HomeController {
     }
 
     @PostMapping("add")
-    public String addCar(@ModelAttribute CarDTO car) throws AlreadyExist {
+    public String addCar(@ModelAttribute CarDTO car) throws AlreadyExistException {
         carService.addCar(car);
 
         //todo add methods
